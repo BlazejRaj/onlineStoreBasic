@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+</head>
+<body>
+
+<table >
+    <tr th:each="product: ${productList}">
+        <td>
+            <a th:href="@{/productView(id=${product.id})}" th:text="${product.getTitle()}">
+                <form th:action="@{productForm}" method="post" th:object="${productForm}">
+                    <input th:text="add to Basket" type="submit"><br>
+                </form>
+        </a>
+        </td>
+
+
+
+
+
+
+        <td th:text="${product.getDescription()}"></td>
+        <td th:text="${product.getPrize()}">
+<!--        <td><a th:href="@{/productView}" th:object="${product}">zobacz</a></td>-->
+        <td><td>
+    </tr>
+</table>
+
+
+</body>
+</html>
