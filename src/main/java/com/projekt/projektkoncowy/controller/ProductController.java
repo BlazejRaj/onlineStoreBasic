@@ -52,6 +52,11 @@ public class ProductController {
         return "productView";
     }
 
+    @GetMapping({"/cart"})
+    public String cartView(){
+        return "cart";
+    }
+
 
 
 }

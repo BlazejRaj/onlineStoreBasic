@@ -16,5 +16,5 @@ public class ProductDto {
     @Size(min = 2, max =255)
     private String description;
 
-    private String prize;
+    private int prize;
 }

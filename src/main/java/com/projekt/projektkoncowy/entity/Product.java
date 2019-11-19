@@ -24,7 +24,7 @@ public class Product {
 
     private String productType;
 
-    private String prize;
+    private int prize;
 
     @ManyToOne //(optional = false)
     @JoinColumn(name = "user_id")

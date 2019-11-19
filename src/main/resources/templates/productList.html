@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Product List</title>
@@ -7,27 +7,35 @@
 <body>
 
 <table >
+    <tr>
+        <th>Name:</th>
+        <th>Description:</th>
+        <th>Prize:</th>
+
+
+    </tr>
+
     <tr th:each="product: ${productList}">
-        <td>
-            <a th:href="@{/productView(id=${product.id})}" th:text="${product.getTitle()}">
-                <form th:action="@{productForm}" method="post" th:object="${productForm}">
-                    <input th:text="add to Basket" type="submit"><br>
-                </form>
-        </a>
-        </td>
-
-
-
-
-
-
+        <td><a th:href="@{/productView(id=${product.id})}" th:text="${product.getTitle()}"></a></td>
         <td th:text="${product.getDescription()}"></td>
-        <td th:text="${product.getPrize()}">
-<!--        <td><a th:href="@{/productView}" th:object="${product}">zobacz</a></td>-->
-        <td><td>
+        <td th:text="${product.getPrize()}"></td>
+        <td><a th:href="@{/addToCart(id=${product.id})}" >Add to cart</a></td>
+
+<!--        <td>-->
+<!--        <form method="post">-->
+<!--            <label for="quantity">Quantity: </label>-->
+<!--            <input id="quantity" type="number">-->
+<!--            &lt;!&ndash;                <input id="quantity" type="number" th:field="*{quantity}"><br>&ndash;&gt;-->
+<!--            <input value="add to cart" type="submit"><br>-->
+<!--        </form>-->
+<!--        <td>-->
     </tr>
 </table>
+<br>
+<a th:href="@{/cart}" >Go to cart</a>
 
 
 </body>
 </html>
+
+<!--th:action="@{productForm}" method="post" th:object="${productForm}"-->

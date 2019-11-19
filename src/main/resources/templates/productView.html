@@ -7,6 +7,15 @@
 <body>
 
 <table >
+    <tr>
+        <th>Name:</th>
+        <th>Description:</th>
+        <th>Prize:</th>
+
+
+    </tr>
+
+
     <tr th:object="${product}">
         <td th:text="${product.getTitle()}"></td>
         <td th:text="${product.getDescription()}"></td>

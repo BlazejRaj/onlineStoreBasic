@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Basket</title>
+</head>
+
+<body>
+to jest koszyk
+
+
+<table >
+
+    <tr>
+        <th>Name:</th>
+        <th>Prize:</th>
+        <th>Quantity:</th>
+        <th>Total:</th>
+
+    </tr>
+
+
+    <tr th:each="itemInCart: ${session.cart}">
+        <td th:text="${itemInCart.productDto.getTitle()}"></td>
+        <td th:text="${itemInCart.productDto.getPrize()}"></td>
+        <td th:text="${itemInCart.getQuantity()}"></td>
+        <td th:text="${itemInCart.getQuantity() * itemInCart.getProductDto().getPrize()}"></td>
+<!--        <td th:text="${itemInCart.quantity * itemInCart.productDto.prize}"></td>-->
+    </tr>
+</table>
+<br>
+
+<form th:action="@{order}" method="get">
+    <input type="submit" value="order now"><br>
+</form>
+
+
+</body>
+</html>
