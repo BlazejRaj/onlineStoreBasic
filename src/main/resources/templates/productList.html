@@ -19,16 +19,25 @@
         <td><a th:href="@{/productView(id=${product.id})}" th:text="${product.getTitle()}"></a></td>
         <td th:text="${product.getDescription()}"></td>
         <td th:text="${product.getPrize()}"></td>
-        <td><a th:href="@{/addToCart(id=${product.id})}" >Add to cart</a></td>
+<!--        <td><a th:href="@{/addToCart(id=${product.id})}" >Add to cart</a></td>-->
+
 
 <!--        <td>-->
-<!--        <form method="post">-->
-<!--            <label for="quantity">Quantity: </label>-->
-<!--            <input id="quantity" type="number">-->
-<!--            &lt;!&ndash;                <input id="quantity" type="number" th:field="*{quantity}"><br>&ndash;&gt;-->
-<!--            <input value="add to cart" type="submit"><br>-->
-<!--        </form>-->
-<!--        <td>-->
+<!--            <form th:action="@{addToCart(id=${product.id})}" method="get">-->
+<!--            <input type="submit" value="Add to cart">-->
+<!--            </form>-->
+<!--        </td>-->
+
+        <td>
+            <form th:action="@{addToCart}" method="get">
+                <input th:type="hidden" th:name="id" th:value="${product.id}">
+                <input type="submit" value="Add to cart">
+
+            </form>
+        </td>
+
+
+
     </tr>
 </table>
 <br>

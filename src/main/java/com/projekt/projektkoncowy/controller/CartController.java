@@ -43,6 +43,26 @@ public class CartController {
         return "redirect:productList";
     }
 
+    @GetMapping({"/removeFromCart"})
+    public String removeFromCart(@RequestParam Long id, HttpSession session){
+        if(session.getAttribute("cart") != null){
+            List<ItemInCart> cart = (List<ItemInCart>) session.getAttribute("cart");
+            int positionInCart = cartService.isInCart(id, cart);
+            if(positionInCart >=0){
+                cart.remove(positionInCart);
+            }
+            session.setAttribute("cart", cart);
+        }
+        return "cart";
+    }
+
+
+
+//    @GetMapping({"/order"})
+//    public String orderNow(){
+//        return "order";
+//    }
+
     @GetMapping({"/order"})
     public String orderNow(){
         return "order";

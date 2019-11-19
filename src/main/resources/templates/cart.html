@@ -26,7 +26,13 @@ to jest koszyk
         <td th:text="${itemInCart.productDto.getPrize()}"></td>
         <td th:text="${itemInCart.getQuantity()}"></td>
         <td th:text="${itemInCart.getQuantity() * itemInCart.getProductDto().getPrize()}"></td>
-<!--        <td th:text="${itemInCart.quantity * itemInCart.productDto.prize}"></td>-->
+
+        <td><form th:action="@{removeFromCart}" method="get">
+            <input th:type="hidden" th:name="id" th:value="${itemInCart.getProductDto().getId()}">
+            <input type="submit" value="Remove from cart">
+        </form>
+        </td>
+
     </tr>
 </table>
 <br>
