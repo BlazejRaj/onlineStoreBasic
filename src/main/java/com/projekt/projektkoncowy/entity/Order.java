@@ -4,6 +4,7 @@ package com.projekt.projektkoncowy.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Data
@@ -16,21 +17,21 @@ public class Order {
     private Long id;
 
     @Column(nullable = false)
-    private String title;
+    private String date;
 
-    @Column(nullable = false, length = 4000)
-    private String description;
+    @OneToMany(mappedBy = "order")
+    private Set<OrderLine> orderLines;
 
-    private String productType;
 
-    private int prize;
-
-    @ManyToOne //(optional = false)
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
 
 
 
+//    @ManyToMany //(optional = false)
+//    @JoinColumn(name = "orderline_id")
+//    private OrderLine orderLine;
 
 }

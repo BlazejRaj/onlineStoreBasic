@@ -1,7 +1,9 @@
 package com.projekt.projektkoncowy.controller;
 
+import com.projekt.projektkoncowy.dto.UserDto;
 import com.projekt.projektkoncowy.entity.ItemInCart;
 import com.projekt.projektkoncowy.service.CartService;
+import com.projekt.projektkoncowy.service.OrderService;
 import com.projekt.projektkoncowy.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,7 @@ public class CartController {
 
     private final ProductService productService;
     private final CartService cartService;
+    private final OrderService orderService;
 
 
     @GetMapping({"/addToCart"})
@@ -58,13 +61,22 @@ public class CartController {
 
 
 
-//    @GetMapping({"/order"})
-//    public String orderNow(){
-//        return "order";
-//    }
-
     @GetMapping({"/order"})
-    public String orderNow(){
+    public String orderNow(HttpSession session){
+//        if(session.getAttribute("cart") !=null){
+//            orderService.createOrder("admin");
+//
+//
+//
+////            List<ItemInCart> cart = (List<ItemInCart>) session.getAttribute("cart");
+////            for (ItemInCart item: cart) {
+////                orderService.createOrderLine
+////            }
+////
+//
+//        }
+//
+
         return "order";
     }
 

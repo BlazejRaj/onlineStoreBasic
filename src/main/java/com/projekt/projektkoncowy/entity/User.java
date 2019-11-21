@@ -4,6 +4,7 @@ package com.projekt.projektkoncowy.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -22,5 +23,8 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Order> orders;
 
 }

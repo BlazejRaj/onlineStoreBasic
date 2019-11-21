@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Data
@@ -22,16 +23,13 @@ public class Product {
     @Column(nullable = false, length = 4000)
     private String description;
 
-    private String productType;
+//    @Column
+//    private String productType;
 
+    @Column
     private int prize;
 
-    @ManyToOne //(optional = false)
-    @JoinColumn(name = "user_id")
-    private User user;
-
-
-
-
+    @OneToMany(mappedBy = "product")
+    private Set<OrderLine> orderLines;
 
 }
