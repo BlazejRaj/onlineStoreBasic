@@ -104,10 +104,10 @@ public class CartController {
     @GetMapping({"/order"})
     public String orderNow(HttpSession session){
         if(session.getAttribute("cart") !=null){
-            orderService.createOrder("admin");   //TODO: add user
-            session.getAttribute("cart");
+            Cart cart = (Cart) session.getAttribute("cart");
+            orderService.createOrder(cart,"admin");   //TODO: add user
 
-
+            //session.getAttribute("cart");
 
 
 //            List<ItemInCart> cart = (List<ItemInCart>) session.getAttribute("cart");
@@ -115,9 +115,7 @@ public class CartController {
 //                orderService.createOrderLine
 //            }
 //
-
         }
-
 
         return "order";
     }

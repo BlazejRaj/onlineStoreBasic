@@ -21,9 +21,9 @@ public class OrderLine {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne (cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
-    private Order order;
+//    @ManyToOne (cascade = CascadeType.ALL)
+//    @JoinColumn(name = "order_id")
+//    private Order order;
 
 
 

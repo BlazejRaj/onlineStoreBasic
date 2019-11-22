@@ -4,6 +4,7 @@ package com.projekt.projektkoncowy.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -25,6 +26,6 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private Set<Order> orders;
+    private List<Order> orders;
 
 }

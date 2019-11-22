@@ -4,7 +4,8 @@ package com.projekt.projektkoncowy.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
+
 
 
 @Data
@@ -19,8 +20,10 @@ public class Order {
     @Column(nullable = false)
     private String date;
 
-    @OneToMany(mappedBy = "order")
-    private Set<OrderLine> orderLines;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+  //  @OneToMany(mappedBy = "order")
+    private List<OrderLine> orderLines;
 
 
     @ManyToOne (cascade = CascadeType.ALL)
@@ -30,8 +33,10 @@ public class Order {
 
 
 
+
 //    @ManyToMany //(optional = false)
 //    @JoinColumn(name = "orderline_id")
 //    private OrderLine orderLine;
 
 }
+

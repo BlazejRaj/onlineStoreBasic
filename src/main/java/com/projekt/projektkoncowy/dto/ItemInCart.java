@@ -11,9 +11,13 @@ import javax.validation.constraints.Min;
 @Setter
 public class ItemInCart {
 
-    private ProductDto productDto;
+
 
     private int quantity;
+
+    private ProductDto productDto;
+
+
 
     public ItemInCart(ProductDto productDto, int quantity) {
         this.productDto = productDto;

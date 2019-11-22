@@ -5,15 +5,19 @@ import com.projekt.projektkoncowy.entity.User;
 import lombok.Data;
 
 
+import java.util.List;
+import java.util.Set;
+
+
 @Data
 public class OrderDto {
 
-    //private Long id;
+    private Long id;
 
     private String date;
 
-    private User user;
+    private List<OrderLine> orderLines;
 
-   // private OrderLine orderLine;
+    private User user;
 
 }

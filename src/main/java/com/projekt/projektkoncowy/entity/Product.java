@@ -29,7 +29,7 @@ public class Product {
     @Column
     private int prize;
 
-    @OneToMany(mappedBy = "product")
-    private Set<OrderLine> orderLines;
+//    @OneToMany(mappedBy = "product")
+//    private Set<OrderLine> orderLines;
 
 }

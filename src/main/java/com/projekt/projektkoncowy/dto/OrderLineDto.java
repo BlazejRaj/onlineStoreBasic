@@ -5,17 +5,18 @@ import com.projekt.projektkoncowy.entity.Product;
 import lombok.Data;
 
 
+
+
 @Data
 public class OrderLineDto {
 
 
-  //  private Long id;
-
-    private Product product;
+    private Long id;
 
     private int quantity;
 
-    private Order order;
+    private ProductDto productDto;
 
+  //  private Order order;
 
 }
