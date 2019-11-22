@@ -1,10 +1,11 @@
 package com.projekt.projektkoncowy.controller;
 
-import com.projekt.projektkoncowy.dto.UserDto;
-import com.projekt.projektkoncowy.entity.ItemInCart;
+import com.projekt.projektkoncowy.dto.Cart;
+import com.projekt.projektkoncowy.dto.ItemInCart;
 import com.projekt.projektkoncowy.service.CartService;
 import com.projekt.projektkoncowy.service.OrderService;
 import com.projekt.projektkoncowy.service.ProductService;
+import com.projekt.projektkoncowy.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
@@ -24,37 +25,76 @@ public class CartController {
     private final ProductService productService;
     private final CartService cartService;
     private final OrderService orderService;
+    private final UserService userService;
 
+//STARA WERSJA
+//    @GetMapping({"/addToCart"})
+//    public String addToCart(@RequestParam Long id, HttpSession session){
+//        if(session.getAttribute("cart") == null){
+//            List<ItemInCart> cart = new ArrayList<>();
+//            cart.add(new ItemInCart(productService.findById(id), 1));
+//            session.setAttribute("cart", cart);
+//        }else{
+//            List<ItemInCart> cart = (List<ItemInCart>) session.getAttribute("cart");
+//            int positionInCart = cartService.isInCart(id, cart);
+//            if(positionInCart >= 0){
+//                int quantity = cart.get(positionInCart).getQuantity() + 1;
+//                cart.get(positionInCart).setQuantity(quantity);
+//            }else{
+//                cart.add(new ItemInCart(productService.findById(id), 1));
+//            }
+//            session.setAttribute("cart", cart);
+//        }
+//        return "redirect:productList";
+//    }
 
     @GetMapping({"/addToCart"})
     public String addToCart(@RequestParam Long id, HttpSession session){
         if(session.getAttribute("cart") == null){
-            List<ItemInCart> cart = new ArrayList<>();
-            cart.add(new ItemInCart(productService.findById(id), 1));
+            Cart cart = new Cart();
+
+            ItemInCart itemInCart = new ItemInCart(productService.findById(id), 1);
+            List<ItemInCart> itemInCartList = new ArrayList<>();
+            itemInCartList.add(itemInCart);
+
+            cart.setItemInCartList(itemInCartList);
+            cart.setUsername("admin");
+
             session.setAttribute("cart", cart);
+            session.setAttribute("itemInCartList", cart.getItemInCartList());
+
         }else{
-            List<ItemInCart> cart = (List<ItemInCart>) session.getAttribute("cart");
-            int positionInCart = cartService.isInCart(id, cart);
+
+            Cart cart = (Cart) session.getAttribute("cart");
+            List<ItemInCart> itemInCartList = cart.getItemInCartList();
+
+            int positionInCart = cartService.isInCart(id, itemInCartList);
             if(positionInCart >= 0){
-                int quantity = cart.get(positionInCart).getQuantity() + 1;
-                cart.get(positionInCart).setQuantity(quantity);
+                int quantity = itemInCartList.get(positionInCart).getQuantity() + 1;
+                itemInCartList.get(positionInCart).setQuantity(quantity);
             }else{
-                cart.add(new ItemInCart(productService.findById(id), 1));
+                itemInCartList.add(new ItemInCart(productService.findById(id), 1));
             }
-            session.setAttribute("cart", cart);
+//            session.setAttribute("cart", cart);
+//            session.setAttribute("itemInCartList", itemInCartList);
         }
         return "redirect:productList";
     }
 
+
+
+
     @GetMapping({"/removeFromCart"})
     public String removeFromCart(@RequestParam Long id, HttpSession session){
+        Cart cart = (Cart) session.getAttribute("cart");
         if(session.getAttribute("cart") != null){
-            List<ItemInCart> cart = (List<ItemInCart>) session.getAttribute("cart");
-            int positionInCart = cartService.isInCart(id, cart);
+            List<ItemInCart> itemInCartList = cart.getItemInCartList();
+            int positionInCart = cartService.isInCart(id, itemInCartList);
             if(positionInCart >=0){
-                cart.remove(positionInCart);
+                itemInCartList.remove(positionInCart);
             }
-            session.setAttribute("cart", cart);
+           // session.setAttribute("cart", cart);
+          //  session.setAttribute("itemInCartList", itemInCartList);
         }
         return "cart";
     }
@@ -63,22 +103,27 @@ public class CartController {
 
     @GetMapping({"/order"})
     public String orderNow(HttpSession session){
-//        if(session.getAttribute("cart") !=null){
-//            orderService.createOrder("admin");
+        if(session.getAttribute("cart") !=null){
+            orderService.createOrder("admin");   //TODO: add user
+            session.getAttribute("cart");
+
+
+
+
+//            List<ItemInCart> cart = (List<ItemInCart>) session.getAttribute("cart");
+//            for (ItemInCart item: cart) {
+//                orderService.createOrderLine
+//            }
 //
-//
-//
-////            List<ItemInCart> cart = (List<ItemInCart>) session.getAttribute("cart");
-////            for (ItemInCart item: cart) {
-////                orderService.createOrderLine
-////            }
-////
-//
-//        }
-//
+
+        }
+
 
         return "order";
     }
+
+
+
 
 
 

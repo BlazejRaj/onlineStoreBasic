@@ -21,7 +21,7 @@ to jest koszyk
     </tr>
 
 
-    <tr th:each="itemInCart: ${session.cart}">
+    <tr th:each="itemInCart: ${session.itemInCartList}">
         <td th:text="${itemInCart.productDto.getTitle()}"></td>
         <td th:text="${itemInCart.productDto.getPrize()}"></td>
         <td th:text="${itemInCart.getQuantity()}"></td>

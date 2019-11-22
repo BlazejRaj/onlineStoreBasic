@@ -1,7 +1,6 @@
 package com.projekt.projektkoncowy.service;
 
-import com.projekt.projektkoncowy.entity.ItemInCart;
-import lombok.RequiredArgsConstructor;
+import com.projekt.projektkoncowy.dto.ItemInCart;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

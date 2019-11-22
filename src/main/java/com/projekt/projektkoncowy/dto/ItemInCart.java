@@ -1,4 +1,4 @@
-package com.projekt.projektkoncowy.entity;
+package com.projekt.projektkoncowy.dto;
 
 import com.projekt.projektkoncowy.dto.ProductDto;
 import lombok.Data;
