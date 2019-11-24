@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class CartController {
 //    }
 
     @GetMapping({"/addToCart"})
-    public String addToCart(@RequestParam Long id, HttpSession session){
+    public String addToCart(@RequestParam Long id, HttpSession session, Principal principal){
         if(session.getAttribute("cart") == null){
             Cart cart = new Cart();
 
@@ -58,7 +59,8 @@ public class CartController {
             itemInCartList.add(itemInCart);
 
             cart.setItemInCartList(itemInCartList);
-            cart.setUsername("admin");
+            //cart.setUsername("admin");
+            cart.setUsername(principal.getName());
 
             session.setAttribute("cart", cart);
             session.setAttribute("itemInCartList", cart.getItemInCartList());
@@ -102,10 +104,10 @@ public class CartController {
 
 
     @GetMapping({"/order"})
-    public String orderNow(HttpSession session){
+    public String orderNow(HttpSession session, Principal principal){
         if(session.getAttribute("cart") !=null){
             Cart cart = (Cart) session.getAttribute("cart");
-            orderService.createOrder(cart,"admin");   //TODO: add user
+            orderService.createOrder(cart,principal.getName());   //TODO: add user
 
             //session.getAttribute("cart");
 

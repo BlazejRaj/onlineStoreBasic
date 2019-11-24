@@ -33,4 +33,10 @@ public class UserController {
         return "redirect:register";
     }
 
+
+//    @GetMapping("/login")
+//    public String login() {
+//        return "login";
+//    }
+
 }
