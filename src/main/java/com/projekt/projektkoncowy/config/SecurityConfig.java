@@ -21,8 +21,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/admin").hasRole("ADMIN")
                 .and()
                 .formLogin()
-                .and()
+                .and().logout().deleteCookies().and()
                 .httpBasic();
+        //.formLogin().defaultSuccessUrl("/productList")
+       // .defaultSuccessUrl("/productList")
     }
 
     @Bean

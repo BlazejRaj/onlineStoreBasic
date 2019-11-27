@@ -37,7 +37,7 @@ public class ProductController {
         return "redirect:/productForm";
     }
 
-    @GetMapping({"/productList"})
+    @GetMapping({"/", "/productList"})
     public String productList (Model model){
         List<ProductDto> products = productService.findAll();
         model.addAttribute("productList", products);
