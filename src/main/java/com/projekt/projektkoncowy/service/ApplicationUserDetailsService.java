@@ -20,9 +20,32 @@ public class ApplicationUserDetailsService implements UserDetailsService {
         User entity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User " + username + " not found"));
 
-        String[] roles = {"USER"};
-        return org.springframework.security.core.userdetails.User
-                .withUsername(entity.getUsername()).password(entity.getPassword()).roles(roles)
-                .build();
+
+
+        UserDetails userDetails;
+
+        if (entity.getUsername().equals("admin")){
+            String[] roles = new String[2];
+            roles[0] = "USER";
+            roles[1] = "ADMIN";
+            userDetails = org.springframework.security.core.userdetails.User
+                    .withUsername(entity.getUsername()).password(entity.getPassword()).roles(roles)
+                    .build();
+
+        }else{
+            String[] roles = new String[1];
+            roles[0] = "USER";
+            userDetails = org.springframework.security.core.userdetails.User
+                    .withUsername(entity.getUsername()).password(entity.getPassword()).roles(roles)
+                    .build();
+        }
+        //TODO: implement user ROLES from DB
+
+
+        return userDetails;
+
+//        return org.springframework.security.core.userdetails.User
+//                .withUsername(entity.getUsername()).password(entity.getPassword()).roles(roles)
+//                .build();
     }
 }

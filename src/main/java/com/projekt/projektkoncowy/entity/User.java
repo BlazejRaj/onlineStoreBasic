@@ -28,4 +28,8 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
+//    @Enumerated(EnumType.STRING)
+//    private UserRole userRole;
+
+
 }
