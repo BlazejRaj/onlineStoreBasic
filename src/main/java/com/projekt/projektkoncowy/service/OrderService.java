@@ -63,13 +63,27 @@ public class OrderService {
         return orderLine;
     }
 
-
-
-
     private String getLocalDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
         return formatter.format(now);
+    }
+
+    public List<OrderDto> findAllByUsername(String username){
+        List<Order> orderList = orderRepository.findAllByUserUsername(username);
+        List<OrderDto> orderDtoList = new ArrayList<>();
+        for (Order order : orderList) {
+            orderDtoList.add(map(order));
+        }
+        return orderDtoList;
+    }
+
+    private OrderDto map(Order order){
+        OrderDto dto = new OrderDto();
+        dto.setId(order.getId());
+        dto.setDate(order.getDate());
+        dto.setOrderLines(order.getOrderLines());
+        return dto;
     }
 
 

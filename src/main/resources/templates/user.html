@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+</head>
+<body>
+
+<table >
+    <tr>
+        <th>Order ID:</th>
+        <th>Date:</th>
+        <th>Ordered items:</th>
+
+
+    </tr>
+
+    <tr th:each="order: ${orderList}">
+<!--        <td><a th:href="@{/productView(id=${product.id})}" th:text="${product.getTitle()}"></a></td>-->
+        <td th:text="${order.getId()}"></td>
+        <td th:text="${order.getDate()}"></td>
+<!--        <td th:text="${order.getOrderLines()}"></td>-->
+        <!--        <td><a th:href="@{/addToCart(id=${product.id})}" >Add to cart</a></td>-->
+
+
+        <!--        <td>-->
+        <!--            <form th:action="@{addToCart(id=${product.id})}" method="get">-->
+        <!--            <input type="submit" value="Add to cart">-->
+        <!--            </form>-->
+        <!--        </td>-->
+
+        <td>
+            <table>
+                <tr>
+                <th>Name:</th>
+                <th>Prize:</th>
+                <th>Quantity:</th>
+                </tr>
+                <tr th:each="orderLine: ${order.getOrderLines()}">
+                    <td th:text="${orderLine.getProduct().getTitle()}"></td>
+                    <td th:text="${orderLine.getProduct().getPrize()}"></td>
+                    <td th:text="${orderLine.getQuantity()}"></td>
+
+                </tr>
+                <tr><br></tr>
+
+
+            </table>
+
+        </td>
+
+
+
+    </tr>
+</table>
+<br>
+<br>
+<br>
+<br>
+<a th:href="@{/productList}" >back to Main</a>
+
+
+</body>
+</html>
+
+
+
+<!--   <form th:action="@{addToCart}" method="get">-->
+<!--                <input th:type="hidden" th:name="id" th:value="${product.id}">-->
+<!--                <input type="submit" value="Add to cart">-->
+
+<!--            </form>-->
