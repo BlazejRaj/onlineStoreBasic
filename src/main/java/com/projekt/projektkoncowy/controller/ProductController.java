@@ -57,7 +57,10 @@ public class ProductController {
         return "cart";
     }
 
-
+    @GetMapping({"/index"})
+    public String indexTest(){
+        return "index";
+    }
 
 
 

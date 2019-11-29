@@ -1,63 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::content})}">
 <head>
     <meta charset="UTF-8">
     <title>User Page</title>
 </head>
 <body>
 
-<table >
-    <tr>
-        <th>Order ID:</th>
-        <th>Date:</th>
-        <th>Ordered items:</th>
-
-
-    </tr>
-
-    <tr th:each="order: ${orderList}">
-<!--        <td><a th:href="@{/productView(id=${product.id})}" th:text="${product.getTitle()}"></a></td>-->
-        <td th:text="${order.getId()}"></td>
-        <td th:text="${order.getDate()}"></td>
-<!--        <td th:text="${order.getOrderLines()}"></td>-->
-        <!--        <td><a th:href="@{/addToCart(id=${product.id})}" >Add to cart</a></td>-->
-
-
-        <!--        <td>-->
-        <!--            <form th:action="@{addToCart(id=${product.id})}" method="get">-->
-        <!--            <input type="submit" value="Add to cart">-->
-        <!--            </form>-->
-        <!--        </td>-->
-
-        <td>
-            <table>
+<div th:fragment="content">
+    <div class="container">
+        <h2>Your orders</h2>
+        <table class="table table-hover" >
+            <thead>
                 <tr>
-                <th>Name:</th>
-                <th>Prize:</th>
-                <th>Quantity:</th>
+                    <th>Order ID:</th>
+                    <th>Date:</th>
+                    <th>Ordered items:</th>
                 </tr>
-                <tr th:each="orderLine: ${order.getOrderLines()}">
-                    <td th:text="${orderLine.getProduct().getTitle()}"></td>
-                    <td th:text="${orderLine.getProduct().getPrize()}"></td>
-                    <td th:text="${orderLine.getQuantity()}"></td>
-
+            </thead>
+            <tbody>
+                <tr th:each="order: ${orderList}">
+                    <td th:text="${order.getId()}"></td>
+                    <td th:text="${order.getDate()}"></td>
+                    <td>
+                        <table class="table table-condensed table-hover">
+                            <tr>
+                            <th>Name:</th>
+                            <th>Prize:</th>
+                            <th>Quantity:</th>
+                            </tr>
+                            <tr th:each="orderLine: ${order.getOrderLines()}">
+                                <td th:text="${orderLine.getProduct().getTitle()}"></td>
+                                <td th:text="${orderLine.getProduct().getPrize()}"></td>
+                                <td th:text="${orderLine.getQuantity()}"></td>
+                            </tr>
+                            <tr><br></tr>
+                        </table>
+                    </td>
                 </tr>
-                <tr><br></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
-            </table>
-
-        </td>
-
-
-
-    </tr>
-</table>
 <br>
 <br>
 <br>
 <br>
-<a th:href="@{/productList}" >back to Main</a>
+<a th:href="@{/productList}" >back to Shop</a>
 
 
 </body>

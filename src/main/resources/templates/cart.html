@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::content})}">
 
 <head>
     <meta charset="UTF-8">
@@ -7,39 +7,43 @@
 </head>
 
 <body>
-to jest koszyk
 
+<div th:fragment="content">
 
-<table >
+    <div class="container">
+        <h2>Cart</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Name:</th>
+                    <th>Prize:</th>
+                    <th>Quantity:</th>
+                    <th>Total:</th>
+                </tr>
+            </thead>
 
-    <tr>
-        <th>Name:</th>
-        <th>Prize:</th>
-        <th>Quantity:</th>
-        <th>Total:</th>
+            <tbody>
+                <tr th:each="itemInCart: ${session.itemInCartList}">
+                    <td th:text="${itemInCart.productDto.getTitle()}"></td>
+                    <td th:text="${itemInCart.productDto.getPrize()}"></td>
+                    <td th:text="${itemInCart.getQuantity()}"></td>
+                    <td th:text="${itemInCart.getQuantity() * itemInCart.getProductDto().getPrize()}"></td>
 
-    </tr>
+                    <td><form th:action="@{removeFromCart}" method="get">
+                        <input th:type="hidden" th:name="id" th:value="${itemInCart.getProductDto().getId()}">
+                        <input type="submit" value="Remove from cart">
+                    </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
 
-
-    <tr th:each="itemInCart: ${session.itemInCartList}">
-        <td th:text="${itemInCart.productDto.getTitle()}"></td>
-        <td th:text="${itemInCart.productDto.getPrize()}"></td>
-        <td th:text="${itemInCart.getQuantity()}"></td>
-        <td th:text="${itemInCart.getQuantity() * itemInCart.getProductDto().getPrize()}"></td>
-
-        <td><form th:action="@{removeFromCart}" method="get">
-            <input th:type="hidden" th:name="id" th:value="${itemInCart.getProductDto().getId()}">
-            <input type="submit" value="Remove from cart">
+        <form th:action="@{order}" method="get">
+            <input type="submit" value="order now"><br>
         </form>
-        </td>
-
-    </tr>
-</table>
-<br>
-
-<form th:action="@{order}" method="get">
-    <input type="submit" value="order now"><br>
-</form>
+    </div>
+</div>
 
 
 </body>
