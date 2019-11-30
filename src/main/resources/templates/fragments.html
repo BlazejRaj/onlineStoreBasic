@@ -35,6 +35,12 @@
 <!--                    <li><a href="#">Contact</a></li>-->
                 </ul>
 
+                     <div th:if="${#authorization.expression('isAnonymous()')}">
+                         <ul class="nav navbar-nav navbar-right">
+                            <li> <a th:href="@{/login}" ><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+                         </ul>
+                     </div>
+
                     <div th:if="${#authorization.expression('isAuthenticated()')}">
                         <ul class="nav navbar-nav navbar-right">
                             <li>   </li>
@@ -42,32 +48,14 @@
                                 <span th:text="${#authentication.name}"></span></a></li>
                             <li> <a th:href="@{/logout}" ><span class="glyphicon glyphicon-log-out" ></span> Logout</a></li>
                         </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                        <li><a th:href="@{/cart}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                        </ul>
                     </div>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a th:href="@{/cart}"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
-                </ul>
-
-
             </div>
         </div>
     </nav>
 
-
-
-
-<!--    <div class="row mt-3" >-->
-
-
-<!--        <div class="col">-->
-<!--            <p>gggggggg</p>-->
-<!--        </div>-->
-<!--        <div class="col">-->
-<!--            <div th:if="${#authorization.expression('isAuthenticated()')}" class="float-right">-->
-<!--                <span th:text="${#authentication.name}"></span>-->
-<!--                <a th:href="@{/logout}" th:text="Logout" class="btn btn-outline-secondary btn-sm ml-3">Logout</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
 </div>
 
 <div th:fragment="footer"></div>
