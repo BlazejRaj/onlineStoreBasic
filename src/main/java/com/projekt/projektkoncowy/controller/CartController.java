@@ -1,7 +1,6 @@
 package com.projekt.projektkoncowy.controller;
 
 import com.projekt.projektkoncowy.dto.Cart;
-import com.projekt.projektkoncowy.dto.ItemInCart;
 import com.projekt.projektkoncowy.service.CartService;
 import com.projekt.projektkoncowy.service.OrderService;
 import com.projekt.projektkoncowy.service.ProductService;
@@ -15,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -78,8 +75,11 @@ public class CartController {
     }
 
 
-
-
+//
+//    @GetMapping("/test")
+//    public String test() {
+//        return "test";
+//    }
 
 
 }
