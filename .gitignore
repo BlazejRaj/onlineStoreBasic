@@ -3,9 +3,11 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-!**/static/webfonts/**
 
 
+
+
+**/src/main/resources/static/webfonts/
 
 ### IntelliJ IDEA ###
 .idea
