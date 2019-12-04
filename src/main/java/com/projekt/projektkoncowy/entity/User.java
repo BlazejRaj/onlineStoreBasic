@@ -28,6 +28,10 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
 //    @Enumerated(EnumType.STRING)
 //    private UserRole userRole;
 

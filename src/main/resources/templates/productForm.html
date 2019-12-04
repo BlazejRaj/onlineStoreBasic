@@ -11,21 +11,12 @@
     <input id="title" type="text" th:field="*{title}"><br>
     <label for="description">Description</label>
     <input id="description" type="text" th:field="*{description}"><br>
-<!--    <label for="productType" th:field="*{productType}">Product type</label>-->
-<!--    <input id="productType" type="text"><br>-->
+
     <label for="prize">Prize</label>
     <input id="prize" type="number" th:field="*{prize}"><br>
 
     <input type="submit"><br>
 </form>
-
-<!--<table>-->
-<!--    <tr th:each="product: ${productList}">-->
-<!--        <td th:text="${product.getTitle()}"></td>-->
-<!--        <td th:text="${product.getDescription()}"></td>-->
-<!--        <td th:text="${product.getPrize()}"></td>-->
-<!--    </tr>-->
-<!--</table>-->
 
 </body>
 </html>

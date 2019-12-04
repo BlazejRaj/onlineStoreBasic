@@ -25,35 +25,11 @@ public class CartController {
     private final OrderService orderService;
     private final UserService userService;
 
-//STARA WERSJA
-//    @GetMapping({"/addToCart"})
-//    public String addToCart(@RequestParam Long id, HttpSession session){
-//        if(session.getAttribute("cart") == null){
-//            List<ItemInCart> cart = new ArrayList<>();
-//            cart.add(new ItemInCart(productService.findById(id), 1));
-//            session.setAttribute("cart", cart);
-//        }else{
-//            List<ItemInCart> cart = (List<ItemInCart>) session.getAttribute("cart");
-//            int positionInCart = cartService.isInCart(id, cart);
-//            if(positionInCart >= 0){
-//                int quantity = cart.get(positionInCart).getQuantity() + 1;
-//                cart.get(positionInCart).setQuantity(quantity);
-//            }else{
-//                cart.add(new ItemInCart(productService.findById(id), 1));
-//            }
-//            session.setAttribute("cart", cart);
-//        }
-//        return "redirect:productList";
-//    }
-
     @GetMapping({"/addToCart"})
     public String addToCart(@RequestParam Long id, HttpSession session, Principal principal){
         cartService.addToCart(id, session, principal);
         return "redirect:productList";
     }
-
-
-
 
     @GetMapping({"/removeFromCart"})
     public String removeFromCart(@RequestParam Long id, HttpSession session){
@@ -63,16 +39,6 @@ public class CartController {
 
 
 
-    @GetMapping({"/order"})
-    public String orderNow(HttpSession session, Principal principal){
-        if(session.getAttribute("cart") !=null){
-            Cart cart = (Cart) session.getAttribute("cart");
-            orderService.createOrder(cart,principal.getName());
-
-        }
-
-        return "order";
-    }
 
 
 //

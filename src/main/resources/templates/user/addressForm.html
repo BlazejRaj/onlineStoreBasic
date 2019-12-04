@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: layout(~{::content})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Address Form</title>
+</head>
+<body>
+
+<div th:fragment="content">
+    <div class="container">
+
+        <form th:action="@{updateAddress}" method="post" th:object="${addressForm}">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input id="name" type="text" th:field="*{name}"><br>
+            </div>
+
+            <div class="form-group">
+                <label for="surname">Surname</label>
+                <input id="surname" type="text" th:field="*{surname}"><br>
+            </div>
+
+            <div class="form-group">
+                <label for="country">Country</label>
+                <input id="country" type="text" th:field="*{country}"><br>
+            </div>
+
+            <div class="form-group">
+                <label for="city">City</label>
+                <input id="city" type="text" th:field="*{city}"><br>
+            </div>
+
+            <div class="form-group">
+                <label for="street">Street</label>
+                <input id="street" type="text" th:field="*{street}"><br>
+            </div>
+
+            <div class="form-group">
+                <label for="houseNo">House Number</label>
+                <input id="houseNo" type="text" th:field="*{houseNo}"><br>
+            </div>
+
+            <div class="form-group">
+                <label for="postalCode">Postal Code</label>
+                <input id="postalCode" type="text" th:field="*{postalCode}"><br>
+            </div>
+
+            <div class="form-group">
+                <label for="prize">Prize</label>
+                <input id="prize" type="number" th:field="*{prize}"><br>
+            </div>>
+
+                <input type="submit" value="Update Address"><br>
+        </form>
+
+
+
+
+    </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<a th:href="@{/user}" >back</a>
+
+
+</body>
+</html>
+
+
+
+<!--   <form th:action="@{addToCart}" method="get">-->
+<!--                <input th:type="hidden" th:name="id" th:value="${product.id}">-->
+<!--                <input type="submit" value="Add to cart">-->
+
+<!--            </form>-->/html>
